@@ -1,0 +1,83 @@
+<ion-content>
+  <!-- <header>
+    <h1>Register<br>
+      <p class="small_text">All you need to do is register below</p>
+    </h1>
+
+  </header> -->
+
+  <div align="center" style="margin-top: 10%">
+    <img src="assets/v1.png" alt="" width="30%" height="30%" />
+  </div>
+
+  <div class="login_title" style="margin-top: 3%">
+    <ion-title>Update Profile</ion-title>
+    <p style="font-size: small; color: rgb(184, 184, 184)">
+      Fill all the required fields
+    </p>
+    <!-- <p class="small_text">All you need to do is register below</p> -->
+  </div>
+
+  <div style="padding: 6%">
+    <ion-item>
+      <ion-label class="text" position="floating">Full Name</ion-label>
+      <ion-input
+        [(ngModel)]="this.dataService.profile.fullName"
+        type="text"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="text" position="floating">Mobile Number</ion-label>
+      <ion-input
+        type="number"
+        disabled
+        [(ngModel)]="this.dataService.profile.phone"
+      ></ion-input>
+    </ion-item>
+    <div class="flex">
+      <ion-item class="flex-1">
+        <ion-label class="text" position="floating">Pin Code</ion-label>
+
+        <ion-input
+          [(ngModel)]="this.dataService.profile.pinCode"
+          type="number"
+        ></ion-input>
+      </ion-item>
+      <div class="flex items-end">
+        <button
+          (click)="checkPinCode()"
+          class="bg-red-600 px-4 py-2 rounded-md text-white"
+        >
+          Check
+        </button>
+      </div>
+    </div>
+    <div class="text-blue-800 font-bold text-sm px-4 pt-2">{{pinAddress}}</div>
+    <ion-item>
+      <ion-label class="text" position="floating">City</ion-label>
+      <ion-input
+        [(ngModel)]="this.dataService.profile.city"
+        type="text"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="text" position="floating">Email ID</ion-label>
+      <ion-input
+        [(ngModel)]="this.dataService.profile.email"
+        type="email"
+      ></ion-input>
+    </ion-item>
+
+    <div align="center" class="button_login">
+      <button
+        expand="block"
+        color="light"
+        class="bg-class"
+        (click)="updateProfile()"
+      >
+        Update Profile
+      </button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,15 @@
+ion-toolbar {
+  --background: linear-gradient(90deg, rgb(255, 0, 0) 0%, #cf0808 100%);
+}
+
+.div1 {
+  background-color: white;
+  border-left: 1px solid rgb(48, 92, 214);
+  // padding: 2px;
+  border-radius: 5px;
+
+  p {
+    color: gray;
+    font-size: 0.9em;
+  }
+}

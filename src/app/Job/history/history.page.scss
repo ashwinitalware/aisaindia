@@ -1,0 +1,26 @@
+ion-toolbar {
+  --background: linear-gradient(90deg, rgb(255, 0, 0) 0%, #cf0808 100%);
+}
+
+.div1 {
+  background-color: white;
+  // border: 1px solid rgb(180, 179, 179);
+  // padding: 2px;
+  border-radius: 8px;
+
+  ion-label {
+    font-size: 1.2em;
+    color: black;
+    font-weight: 500;
+  }
+
+  p {
+    color: gray;
+    font-size: 1.0em;
+
+    span {
+      font-size: 0.9em;
+    }
+
+  }
+}

@@ -1,0 +1,272 @@
+<ion-header>
+  <ion-toolbar>
+    <div slot="start">
+      <ion-menu-button class="text-white"> </ion-menu-button>
+    </div>
+    <div align="center">
+      <img src="assets/textW.png" width="35%" height="35%" alt="" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div
+    id="myModal"
+    class="modal flex items-center justify-center {{modalClass}}"
+    style="z-index: 10"
+  >
+    <div class="modal-content rounded-md overflow-hidden relative">
+      <img
+        src="{{popupImage}}"
+        alt=""
+        (click)="this.dataService.viewImage(popupImage)"
+      />
+      <span
+        (click)="modalClass='hidden'"
+        class="bg-red text-white w-8 h-8 flex items-center justify-center absolute right-0 top-0"
+        >X</span
+      >
+    </div>
+  </div>
+
+  <div class="p-3">
+    <ion-label>How can we<br /><b>Help You Today?</b></ion-label>
+  </div>
+  <ion-row class="px-2 relative">
+    <div
+      class="flex items-center"
+      style="
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+        border: 1px solid rgb(211, 211, 211);
+      "
+    >
+      <ion-input
+        class="flex-1"
+        placeholder="Search In All India"
+        id="search"
+        (ionChange)="search()"
+        [(ngModel)]="queryText"
+      >
+        <ion-icon name="search" style="margin-left: 7px"></ion-icon> </ion-input
+      ><ion-icon
+        *ngIf="this.queryText"
+        (click)="this.queryText=''"
+        name="close"
+        class="px-4"
+        style="margin-left: 7px"
+      ></ion-icon>
+    </div>
+
+    <!-- class="bg-white rounded-md w-full mt-2 absolute mt-16" -->
+    <div class="bg-white rounded-md w-full mt-2" style="z-index: 10; left: 0px">
+      <div
+        *ngFor="let suggestion of suggestions;let i=index"
+        class="flex px-4 p-2"
+        (click)="selected(suggestion)"
+      >
+        <div class="flex-1">{{suggestion.title}}</div>
+        <div>in <b> {{suggestion.type}}</b></div>
+      </div>
+      <div
+        class="p-4 text-center font-bold"
+        *ngIf="this.queryText&& this.noSuggesions"
+      >
+        No Data Found
+      </div>
+    </div>
+  </ion-row>
+
+  <div
+    style="
+      background-color: white;
+      border-radius: 5px;
+      margin-top: 2%;
+      padding: 5px;
+    "
+  >
+    <ion-slides
+      #slider
+      loop="true"
+      [options]="slideOpts"
+      (ionSlideTouchEnd)="slideChanged()"
+    >
+      <ion-slide>
+        <ion-card style="border-radius: 5px">
+          <img src="assets/jobs2.jpg" />
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card style="border-radius: 5px">
+          <img src="assets/jobs1.jpg" />
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card style="border-radius: 5px">
+          <img src="assets/jobs3.jpg" />
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div style="padding-left: 0.8em" class="pt-3">
+    <ion-label><b>All Categories</b></ion-label>
+  </div>
+
+  <div style="background-color: white; border-radius: 5px; margin-top: 3%">
+    <ion-grid fixed>
+      <ion-row class="small_text">
+        <ion-col
+          *ngFor="let category  of categories"
+          size="3"
+          align="center"
+          (click)="navigateCategory(category)"
+          class="flex justify-center flex-col"
+        >
+          <div
+            class="m-auto primary-red p-3 text-white rounded-md flex items-center justify-center"
+          >
+            <ion-icon
+              *ngIf="category.icon"
+              name="{{category.icon}}"
+              class="text-xl"
+            ></ion-icon>
+          </div>
+          <!-- <img src="assets/D2.png" alt="" /><br /> -->
+          <div class="truncate mt-2">{{category.name}}</div>
+          <div
+            class="red"
+            [ngStyle]="{'color': category.available?'white':'red'}"
+          >
+            Coming Soon
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div
+    style="
+      background-color: white;
+      border-radius: 5px;
+      margin-top: 2%;
+      padding: 5px;
+    "
+  >
+    <ion-slides
+      #slider
+      loop="true"
+      [options]="slideOpts"
+      (ionSlideTouchEnd)="slideChanged()"
+    >
+      <ion-slide>
+        <ion-card style="border-radius: 5px">
+          <img src="assets/slider-3.jpg" />
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card style="border-radius: 5px">
+          <img src="assets/slider-2.jpg" />
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card style="border-radius: 5px">
+          <img src="assets/slider-1.png" />
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card style="border-radius: 5px">
+          <img src="assets/slider-4.jpg" />
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card style="border-radius: 5px">
+          <img src="assets/slider-3.jpg" />
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div style="padding-left: 0.8em" class="pt-3">
+    <ion-label><b>Popular Ads</b></ion-label>
+  </div>
+
+  <div
+    style="
+      background-color: white;
+      border-radius: 5px;
+      margin-top: 2%;
+      padding: 5px;
+      margin-bottom: 20%;
+    "
+  >
+    <ion-slides #slider loop="true" [options]="slideOptss">
+      <ion-slide>
+        <ion-card class="adds-card">
+          <img src="assets/A1.png" alt="" />
+          <ion-label>A Good Sofa</ion-label>
+          <p><span>Chennai</span></p>
+          <p>₹ 14,000</p>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card class="adds-card">
+          <img src="assets/A2.png" alt="" />
+          <ion-label>Iphone 8 Plus </ion-label>
+          <p>Nagpur</p>
+          <p>₹ 5,999</p>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card class="adds-card">
+          <img src="assets/A3.png" alt="" />
+          <ion-label>Old Coins</ion-label>
+          <p>Delhi</p>
+          <p>₹ 35,000</p>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card class="adds-card">
+          <img src="assets/A4.png" alt="" />
+          <ion-label>Sofa Cum Bed</ion-label>
+          <p>Bangalore</p>
+          <p>₹ 6,000</p>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card class="adds-card">
+          <img src="assets/A5.png" alt="" />
+          <ion-label>UAE Old Coin</ion-label>
+          <p>Chennai</p>
+          <p>₹ 10,000</p>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <!-- <ion-button id="alignment-center">Click to Offer popover</ion-button>
+  <ion-popover trigger="alignment-center" side="right" alignment="top">
+    <ng-template (click)="presentPopover()">
+      <ion-content class="p-6 pb-5">
+        <div>
+          <img src="assets/diwali1.gif" alt="">
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-popover> -->
+
+  <div align="center" class="pt-12">
+    <img src="assets/ft.png" alt="" width="35%" height="35%" />
+  </div>
+</ion-content>

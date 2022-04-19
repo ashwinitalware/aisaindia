@@ -1,0 +1,8 @@
+{
+  "name": "SuperApp",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

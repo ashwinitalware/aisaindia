@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light"></ion-back-button>
+    </ion-buttons>
+    <div class="px-4 text-white text-lg">Update Resume & Apply</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding: 6%">
+    <div class="login_title" style="margin-top: 10px">
+      <ion-title>Apply To Job </ion-title>
+      <p class="small_text">Please upload latest & updated resume</p>
+    </div>
+    <input
+      type="file"
+      class="hidden"
+      #fileUpload2
+      (change)="handleFileInput($event)"
+    />
+    <div style="padding: 4px">
+      <!-- <ion-item>
+        <ion-label class="text" position="floating">Full Name &nbsp;<span style="color: red;">*</span></ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item> -->
+
+      <!-- <ion-item>
+        <ion-label class="text" position="floating">Mobile Number &nbsp;<span style="color: red;">*</span></ion-label>
+        <ion-input type="number"></ion-input>
+      </ion-item> -->
+
+      <!-- <ion-item>
+        <ion-label class="text" position="floating">Email ID &nbsp;<span style="color: red;">*</span></ion-label>
+        <ion-input type="number"></ion-input>
+      </ion-item> -->
+
+      <!-- <ion-item>
+        <ion-label class="text" position="stacked"
+          >Your Experience &nbsp;<span style="color: red">*</span></ion-label
+        >
+        <ion-textarea
+          type="text"
+          placeholder="Your Previous experience details in this field"
+        ></ion-textarea>
+      </ion-item> -->
+    </div>
+
+    <div align="center" class="button_login_file" style="margin-top: 20px">
+      <p
+        (click)="viewResume()"
+        class="text-left text-blue-800 my-4"
+        *ngIf="this.dataService.profile.resume"
+      >
+        * View uploaded resume
+      </p>
+      <button
+        expand="block"
+        color="light"
+        class="bg-class_file"
+        (click)="fileUpload2.click()"
+      >
+        {{resumeText}}
+      </button>
+
+      <!-- <button
+        expand="block"
+        color="light"
+        class="bg-class_file"
+        *ngIf="this.dataService.profile.resume"
+      >
+        <label for="upload-photo">Change Resume (.pdf)</label>
+        <input type="file" name="photo" id="upload-photo" />
+      </button> -->
+    </div>
+
+    <div align="center" class="button_login" style="margin-top: 10px">
+      <button
+        [disabled]="jobApplied"
+        expand="block"
+        color="light"
+        class="bg-red-600 text-white py-2 rounded-md shadow-md w-full"
+        [ngClass]="{'bg-red-400': jobApplied}"
+        (click)="apply()"
+      >
+        {{jobApplied?"APPLIED":"APPLY "}}
+      </button>
+    </div>
+  </div>
+</ion-content>

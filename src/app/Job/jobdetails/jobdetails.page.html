@@ -1,0 +1,291 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light"></ion-back-button>
+    </ion-buttons>
+    <div class="flex justify-between pr-4 items-center">
+      <div class="px-4 text-white text-lg">Job Details</div>
+      <!-- <ion-icon (click)="share()" class="text-white" name="share-social"></ion-icon> -->
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="data" class="h-full">
+    <div class="h-full bg-white p-4">
+      <div class="flex justify-between items-center">
+        <div class="text-xl font-bold">
+          <div>{{data.attributes.title|titlecase}}</div>
+        </div>
+        <div class="text-sm text-gray-800">
+          {{data.attributes.vacancies}} Opening(s)
+        </div>
+        <!-- <div class="font-bold">
+          Rs {{data.attributes.salaryFrom}} - Rs {{data.attributes.salaryUpto}}
+        </div> -->
+      </div>
+
+      <div class="text-md text-black">
+        Rs {{data.attributes.salaryFrom}} - Rs {{data.attributes.salaryUpto}}
+      </div>
+      <!-- <div class=" text-sm text-gray-800">
+        {{data.attributes.vacancies}} Opening(s)
+      </div> -->
+      <div class="flex mt-2">
+        <span class="flex items-center">
+          <ion-icon name="location-outline"></ion-icon>
+          &nbsp; {{data.attributes.city|titlecase}}
+        </span>
+        <span class="flex items-center ml-4">
+          <ion-icon name="briefcase-outline"></ion-icon>
+          &nbsp;Experience {{data.attributes.experience|titlecase}}
+        </span>
+      </div>
+
+      <div class="flex mt-2">
+        <span class="flex items-center">
+          <ion-icon name="bookmark-outline"></ion-icon>
+          &nbsp; {{data.attributes.minimumEducation|titlecase}}
+        </span>
+        <span class="flex items-center ml-4">
+          <ion-icon name="calendar-outline"></ion-icon>
+          &nbsp;
+          {{dataService.parseData(data.attributes.workingDays)|titlecase}}
+        </span>
+      </div>
+      <!-- <div class="flex mt-2">
+        <span class="flex items-center">
+          <ion-icon name="pin-outline"></ion-icon>
+          &nbsp; {{data.attributes.address|titlecase}}
+        </span>
+      </div> -->
+      <div class="flex mt-2 pb-2">
+        <span class="flex items-center">
+          <ion-icon name="person-outline"></ion-icon>
+          &nbsp; {{data.attributes.gender|titlecase}}
+          <span *ngIf="data.attributes.gender=='any'"> &nbsp;Gender</span>
+          <span *ngIf="data.attributes.gender!='any'"> &nbsp;Only</span>
+        </span>
+      </div>
+      <div class="flex pb-2">
+        <span class="flex items-center">
+          <ion-icon name="rocket-outline"></ion-icon>
+          &nbsp; {{data.attributes.skillsByComma|titlecase}}
+        </span>
+      </div>
+
+      <!-- <ion-grid fixed>
+        <ion-row>
+          <ion-col size="4">
+            <ion-button (click)="onClick()" size="small" color="tertiary" class="text-sm">
+              <ion-icon name="call-outline"></ion-icon> &nbsp; Call Now
+            </ion-button>
+          </ion-col>
+          <ion-col size="4">
+            <ion-button (click)="onClick()" size="small" color="success" class="text-sm">
+              <ion-icon name="logo-whatsapp"></ion-icon> &nbsp; Whatsapp
+            </ion-button>
+          </ion-col>
+          <ion-col size="4">
+            <ion-button (click)="onClick()" size="small" color="warning" class="text-sm">
+              <ion-icon name="share-social"></ion-icon> &nbsp; Share
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+
+      <div class="flex justify-between pt-3 border-t-2 border-gray-200">
+        <div>
+          <button
+            *ngIf="this.data.attributes.contactNumber"
+            class="p-1 py-2 px-4 hover:bg-blue-700 text-blue-700 font-semibold hover:text-white shadow-lg mr-4"
+            style="border: 1px solid blue; border-radius: 5px"
+            (click)="call(this.data)"
+          >
+            <ion-icon class="text-sm" name="call-outline"></ion-icon>
+          </button>
+          <!-- <button
+            class="bg-white hover:bg-blue-700 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            <ion-icon class="text-sm" name="call-outline"></ion-icon>
+          </button> -->
+
+          <button
+            *ngIf="this.data.attributes.contactNumber"
+            class="p-1 py-2 px-4 text-green-500 hover:bg-green-500 font-semibold hover:text-white shadow-lg mr-4"
+            style="border: 1px solid green; border-radius: 5px"
+            (click)="whatsapp(this.data)"
+          >
+            <ion-icon name="logo-whatsapp"></ion-icon>
+          </button>
+
+          <button
+            class="p-1 py-2 px-4 text-black hover:bg-black font-semibold hover:text-white shadow-lg"
+            style="border: 1px solid black; border-radius: 5px"
+            (click)="share()"
+          >
+            <ion-icon name="share-social"></ion-icon>
+          </button>
+
+          <!-- <button
+            class="bg-blue-500 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            <ion-icon name="share-social"></ion-icon> &nbsp;
+          </button> -->
+        </div>
+
+        <div>
+          <ion-button (click)="report()" color="dark" fill="clear">
+            Report Job
+          </ion-button>
+        </div>
+      </div>
+      <!-- <div class="flex mt-2">
+        <ion-button class="w-full" color="tertiary" expand="block" (click)="call(this.data)">
+          <ion-icon name="call-outline"></ion-icon>&nbsp; Call Now
+        </ion-button>
+        <ion-button class="w-full" color="success" expand="block" (click)="whatsapp(this.data)">
+          <ion-icon name="logo-whatsapp"></ion-icon>&nbsp; Whatsapp
+        </ion-button>
+      </div> -->
+      <!-- <div class="flex justify-end">
+        <ion-button (click)="report()" color="dark" fill="clear">
+          Report Job
+        </ion-button>
+      </div> -->
+
+      <div class="text-lg font-bold mt-2">Job Description</div>
+
+      <div>{{data.attributes.description }}</div>
+
+      <div class="flex mt-2 border-t border-b py-2">
+        <img
+          *ngIf="data && !imageError && data.attributes.author.data.attributes"
+          class="w-12 h-12 bg-gray-200 rounded-full"
+          src="{{data.attributes.author.data.attributes.job_profile.data.attributes.logo+'sdf'}}"
+          (error)="imageError=true"
+          alt=""
+        />
+        <div
+          *ngIf="data &&  imageError"
+          class="bg-gray-300 w-12 h-12 rounded-full flex items-center justify-center text-gray-500"
+        >
+          <ion-icon class="text-3xl" name="briefcase"></ion-icon>
+        </div>
+
+        <div class="flex-1 ml-2">
+          <div
+            class="font-bold"
+            *ngIf="data.attributes.author.data && data.attributes.author.data.attributes.job_profile.data"
+          >
+            {{data.attributes.author.data.attributes.job_profile.data.attributes.companyName|titlecase}}
+          </div>
+          <div
+            *ngIf="data.attributes.author.data && data.attributes.author.data.attributes.job_profile.data"
+          >
+            {{data.attributes.author.data.attributes.job_profile.data.attributes.companyAddress|titlecase}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--
+
+  <div class="p-4">
+    <div>This job requires</div>
+
+    <p class="pl-2">
+      <button *ngFor="let skill of skills;let i=index"
+        class="bg-red-600 rounded-full px-2 py-1 text-white mr-4 mt-2 text-sm">
+        <ion-icon style="font-size: small" name="checkmark"></ion-icon>
+        {{skill |uppercase}}
+      </button>
+
+    </p>
+
+    <ion-grid fixed>
+      <ion-row class="pl-2 pr-2">
+        <ion-col size="1">
+          <ion-icon name="book-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="5" align="left">
+          <ion-label style="color: black; font-weight: 500">Minimum Education</ion-label>
+          <p style="font-size: 1em; color: rgb(121, 121, 121)">
+            {{data.attributes.minimumEducation }}
+          </p>
+        </ion-col>
+        <ion-col size="1">
+          <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="5" align="left">
+          <ion-label style="color: black; font-weight: 500">English Level</ion-label>
+          <p style="font-size: 1em; color: rgb(121, 121, 121)">
+            {{data.attributes.english }}
+          </p>
+        </ion-col>
+        <ion-col size="1">
+          <ion-icon name="star-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11" align="left">
+          <ion-label style="color: black; font-weight: 500">Experience</ion-label>
+          <p style="font-size: 1em; color: rgb(121, 121, 121)">
+            {{data.attributes.experience }}
+          </p>
+        </ion-col>
+        <ion-col size="1">
+          <ion-icon name="bag-handle-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11" align="left">
+          <ion-label style="color: black; font-weight: 500">Description</ion-label>
+          <p style="font-size: 1em; color: rgb(121, 121, 121)">
+            {{data.attributes.description }}
+          </p>
+        </ion-col>
+        <ion-col size="1">
+          <ion-icon name="time-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11" align="left">
+          <ion-label style="color: black; font-weight: 500">Timings</ion-label>
+          <p style="font-size: 1em; color: rgb(121, 121, 121)">
+            {{data.attributes.timings }}
+          </p>
+        </ion-col>
+        <ion-col size="1">
+          <ion-icon name="today-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11" align="left">
+          <ion-label style="color: black; font-weight: 500">Working Days</ion-label>
+          <p style="font-size: 1em; color: rgb(121, 121, 121)">
+            {{data.attributes.workingDays }}
+          </p>
+        </ion-col>
+        <ion-col size="1">
+          <ion-icon name="location-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11" align="left">
+          <ion-label style="color: black; font-weight: 500">City</ion-label>
+          <p style="font-size: 1em; color: rgb(121, 121, 121)">
+            {{data.attributes.city|titlecase }}
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="px-4">
+    <ion-button (click)="apply()" [disabled]="jobApplied" expand="block">
+      {{jobApplied?"Already Applied":"APPLY "}}
+    </ion-button>
+
+  </div> -->
+  </div>
+</ion-content>
+<ion-footer>
+  <div class="p-4 bg-white">
+    <ion-button
+      [color]="jobApplied?'success':'primary'"
+      (click)="apply()"
+      [disabled]="jobApplied"
+      expand="block"
+    >
+      {{jobApplied?"Already Applied":"APPLY NOW "}}
+    </ion-button>
+  </div>
+</ion-footer>

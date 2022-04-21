@@ -40,7 +40,7 @@ export class AppComponent {
     this.platform.ready().then(async () => {
       App.addListener('backButton', () => {
         if (
-          (window.location + '').includes('localhost/dashboard') ||
+          (window.location + '').includes('localhost/jobdashboard') ||
           (window.location + '').includes('localhost/login')
         )
           App.exitApp();
@@ -48,7 +48,7 @@ export class AppComponent {
 
         try {
           this.dataService.dismiss();
-        } catch (error) {}
+        } catch (error) { }
       });
       //     FCM.subscribeTo({ topic: "test123" })
       // .then((r) => alert(`subscribed to topic`))
@@ -74,7 +74,7 @@ export class AppComponent {
     });
   }
 
-  businessRegistration() {}
+  businessRegistration() { }
 
   edit() {
     this.dataService.menu.close();
@@ -82,7 +82,7 @@ export class AppComponent {
   }
   itemClicked(item) {
     this.dataService.menu.close();
-    if (item.role == 'home') this.router.navigate(['/dashboard']);
+    if (item.role == 'home') this.router.navigate(['/jobdashboard']);
     if (item.role == 'privacy') this.router.navigate(['/privacypolicy']);
     if (item.role == 'contact') this.router.navigate(['/contactus']);
     if (item.role == 'share') {

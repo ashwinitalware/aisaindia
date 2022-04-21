@@ -9,63 +9,40 @@
     <p class="text-p text-gray-600">Enter your phone number to continue</p>
   </div>
  -->
+    <!-- <div class="bg-red flex justify-center text-white pt-4 pb-4" align="center">
+      <img src="assets/splash.png" class="w-1/2 m-auto" />
+      <ion-label class="text-xl "><b>AISA INDIA</b></ion-label>
+    </div> -->
     <div class="bg-red flex items-center text h-1/3">
-      <img src="assets/textW.png" class="w-1/2 m-auto" />
+      <img src="assets/splash.png" class="w-1/2 m-auto" />
     </div>
 
     <div class="bg-white p-8 flex-1">
       <div class="text-sm font-bold">Phone Number :</div>
-      <input
-        [(ngModel)]="this.dataService.auth.phone"
-        [disabled]="this.dataService.auth.otpSent"
-        [ngClass]="{'bg-gray-200': this.dataService.auth.otpSent}"
-        type="number"
-        placeholder="Ex : 86056500xx"
-        class="bg-white w-full rounded-md h-14 px-2 border border-gray-300 mt-4"
-      />
+      <input [(ngModel)]="this.dataService.auth.phone" [disabled]="this.dataService.auth.otpSent"
+        [ngClass]="{'bg-gray-200': this.dataService.auth.otpSent}" type="number" placeholder="Ex : 86056500xx"
+        class="bg-white w-full rounded-md h-14 px-2 border border-gray-300 mt-4" />
 
       <div class="mt-4" *ngIf="this.dataService.auth.otpSent">
         <div class="text-sm font-bold">Enter Your OTP :</div>
-        <input
-          autocomplete="one-time-code"
-          [(ngModel)]="this.dataService.auth.otp"
-          type="number"
-          placeholder="4 Digit OTP Code"
-          class="bg-white w-full rounded-md h-14 px-2 border border-gray-300 mt-4"
-        />
-        <p
-          class="text-p pt-2 text-red-600 font-bold text-right"
-          (click)="resend()"
-        >
+        <input autocomplete="one-time-code" [(ngModel)]="this.dataService.auth.otp" type="number"
+          placeholder="4 Digit OTP Code" class="bg-white w-full rounded-md h-14 px-2 border border-gray-300 mt-4" />
+        <p class="text-p pt-2 text-blue-600 font-bold text-right" (click)="resend()">
           Resend OTP
         </p>
       </div>
 
-      <button
-        *ngIf="this.dataService.auth.otpSent"
-        expand="block"
-        color="light"
-        class="bg-class mt-4"
-        (click)="verify()"
-      >
+      <button *ngIf="this.dataService.auth.otpSent" expand="block" color="light" class="bg-class mt-4"
+        (click)="verify()">
         <!-- routerLink="/dashboard" -->
         Verify OTP
       </button>
 
-      <p
-        *ngIf="this.dataService.auth.otpSent"
-        class="text-red-700 text-sm text-center mt-4"
-        (click)="changePhone()"
-      >
+      <p *ngIf="this.dataService.auth.otpSent" class="text-blue-700 text-sm text-center mt-4" (click)="changePhone()">
         OR CHANGE PHONE NUMBER
       </p>
-      <button
-        *ngIf="!this.dataService.auth.otpSent"
-        expand="block"
-        color="light  "
-        class="bg-class mt-8 h-12"
-        (click)="login()"
-      >
+      <button *ngIf="!this.dataService.auth.otpSent" expand="block" color="light  " class="bg-class mt-8 h-12"
+        (click)="login()">
         Login
       </button>
       <!-- <p class="text-p pt-2">
@@ -76,7 +53,7 @@
 
     <!-- <p
     *ngIf="!this.dataService.auth.otpSent"
-    class="text-red-700 text-sm text-center mt-4"
+    class="text-blue-700 text-sm text-center mt-4"
     (click)="changePhone()"
   >
     OR

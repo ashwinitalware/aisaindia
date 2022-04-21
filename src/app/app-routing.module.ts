@@ -38,6 +38,7 @@ const routes: Routes = [
   },
   {
     path: 'jobdashboard',
+    // canActivate: [LoginGuard],
     loadChildren: () =>
       import('./job/jobdashboard/jobdashboard.module').then(
         (m) => m.JobdashboardPageModule
@@ -292,4 +293,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -39,8 +39,7 @@
         {{this.jobService.totalJobs}} Jobs Found
         <span *ngIf="this.jobService.jobFilters.city">
           in {{this.jobService.jobFilters.city|titlecase}}
-        </span></b
-      >
+        </span></b>
       <!-- {{currentPage}} {{totalPage}} -->
     </div>
     <!-- <ion-button color="dark" fill="outline" (click)="showFilterModal=true">Filters</ion-button> -->
@@ -50,12 +49,8 @@
   </div>
 
   <div class="px-4" *ngIf="!noJobsFound">
-    <div
-      class="bg-white p-4 mt-2 rounded-md"
-      style="width: 100%"
-      *ngFor="let job of this.jobService.jobs"
-      (click)="jobDetails(job)"
-    >
+    <div class="bg-white p-4 mt-2 rounded-md" style="width: 100%" *ngFor="let job of this.jobService.jobs"
+      (click)="jobDetails(job)">
       <div class="flex">
         <div class="flex-1 text-black text-left text-base font-bold">
           <!-- {{job.id}} -->
@@ -73,23 +68,15 @@
         {{job.attributes.type|titlecase}}
       </span>
       |
-      <span
-        class="text-black text-sm"
-        *ngIf="job.attributes.jobCategory && job.attributes.jobCategory.data"
-      >
+      <span class="text-black text-sm" *ngIf="job.attributes.jobCategory && job.attributes.jobCategory.data">
         {{job.attributes.jobCategory.data.attributes.name}}
       </span>
 
-      <div
-        class="text-sm flex items-center mt-2"
-        *ngIf="job.attributes.author && job.attributes.author.data"
-      >
+      <div class="text-sm flex items-center mt-2" *ngIf="job.attributes.author && job.attributes.author.data">
         <ion-icon name="podium" class="text-blue-500"></ion-icon>
         &nbsp;
 
-        <span
-          *ngIf="job.attributes.author.data && job.attributes.author.data.attributes.job_profile.data"
-        >
+        <span *ngIf="job.attributes.author.data && job.attributes.author.data.attributes.job_profile.data">
           {{(job.attributes.author.data.attributes.job_profile.data.attributes.companyName||"Company
           Name")|titlecase}}
         </span>
@@ -104,7 +91,7 @@
         </div>
         <div>
           <div class="text-sm flex items-center">
-            <ion-icon name="location" class="text-red-600"></ion-icon>&nbsp;
+            <ion-icon name="location" class="text-blue-600"></ion-icon>&nbsp;
             {{job.attributes.city|titlecase}}
           </div>
         </div>
@@ -175,11 +162,7 @@
           <div *ngIf="job.applied">Viewed</div>
         </div>
         <div class="text-right">
-          <ion-button
-            color="dark"
-            fill="clear"
-            class="flex-1 mt-2 bg-white text-sm"
-          >
+          <ion-button color="dark" fill="clear" class="flex-1 mt-2 bg-white text-sm">
             <b>View Details</b>
           </ion-button>
         </div>
@@ -187,32 +170,19 @@
     </div>
   </div>
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data..."
-    >
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
   <!-- <ion-modal [isOpen]="isModalOpen"> -->
-  <ion-modal
-    [isOpen]="showFilterModal"
-    [initialBreakpoint]=".8"
-    (didDismiss)="showFilterModal=false"
-  >
+  <ion-modal [isOpen]="showFilterModal" [initialBreakpoint]=".8" (didDismiss)="showFilterModal=false">
     <ng-template>
       <div class="h-4/5 relative">
         <div class="flex h-full">
           <div class="h-full overflow-y-scroll pb-16 bg-gray-200">
-            <div
-              (click)="selectedFilterSection=filter.tag"
-              class="flex flex-col items-center py-8 px-4 text-black"
-              *ngFor="let filter of filterTypes"
-              [ngClass]="{'bg-white': selectedFilterSection==filter.tag}"
-            >
-              <ion-icon
-                style="font-size: larger"
-                name="{{filter.icon+(selectedFilterSection==filter.tag?'':'-outline')}}"
-              ></ion-icon>
+            <div (click)="selectedFilterSection=filter.tag" class="flex flex-col items-center py-8 px-4 text-black"
+              *ngFor="let filter of filterTypes" [ngClass]="{'bg-white': selectedFilterSection==filter.tag}">
+              <ion-icon style="font-size: larger"
+                name="{{filter.icon+(selectedFilterSection==filter.tag?'':'-outline')}}"></ion-icon>
               <span> {{filter.name}} </span>
             </div>
           </div>
@@ -242,9 +212,7 @@
             </div>
             <div *ngIf="selectedFilterSection=='sort'">
               <ion-list>
-                <ion-radio-group
-                  [(ngModel)]="this.jobService.jobFilters.sort[0]"
-                >
+                <ion-radio-group [(ngModel)]="this.jobService.jobFilters.sort[0]">
                   <ion-item>
                     <ion-label>Newest Job First</ion-label>
                     <ion-radio slot="start" value="createdAt:desc"></ion-radio>
@@ -266,9 +234,7 @@
             </div>
             <div *ngIf="selectedFilterSection=='salary'">
               <ion-list>
-                <ion-radio-group
-                  [(ngModel)]="this.jobService.jobFilters.salary.min"
-                >
+                <ion-radio-group [(ngModel)]="this.jobService.jobFilters.salary.min">
                   <ion-item>
                     <ion-label>Any Salary</ion-label>
                     <ion-radio slot="start" value="0"></ion-radio>
@@ -302,9 +268,7 @@
             </div>
             <div *ngIf="selectedFilterSection=='experience'">
               <ion-list>
-                <ion-radio-group
-                  [(ngModel)]="this.jobService.jobFilters.experience"
-                >
+                <ion-radio-group [(ngModel)]="this.jobService.jobFilters.experience">
                   <ion-item>
                     <ion-label>Freshers</ion-label>
                     <ion-radio slot="start" value="fresher"></ion-radio>
@@ -361,8 +325,7 @@
           </div>
         </div>
         <div class="absolute bottom-0 left-0 w-full p-4">
-          <ion-button expand="block" (click)="apply()" fill="solid"
-            >Apply
+          <ion-button expand="block" (click)="apply()" fill="solid">Apply
           </ion-button>
         </div>
       </div>
@@ -409,13 +372,8 @@
   </ion-modal>
 </ion-content>
 
-<ion-fab
-  horizontal="end"
-  vertical="bottom"
-  slot="fixed"
-  (click)="showFilterModal=true"
->
-  <ion-fab-button class="text-2xl" color="danger">
+<ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="showFilterModal=true">
+  <ion-fab-button class="text-2xl" color="primary">
     <ion-icon color="light" name="funnel"></ion-icon>
   </ion-fab-button>
 </ion-fab>

@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
       .catch((error: any) => console.error(error));
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   // autoLogin() {
   //   this.dataService.present('Syncing Profile...', 200);
@@ -65,7 +65,7 @@ export class LoginPage implements OnInit {
       return this.dataService.presentToast(
         'Invalid Phone Number',
 
-        'danger'
+        'primary'
       );
     }
     this.dataService.present();
@@ -113,12 +113,13 @@ export class LoginPage implements OnInit {
             ) {
               this.navCtrl.navigateForward(['/editprofile']);
             } else {
-              this.navCtrl.navigateForward(['/dashboard']);
+              this.navCtrl.navigateForward(['/jobdashboard']);
+              // this.navCtrl.navigateForward(['/dashboard']);
               // this.navCtrl.navigateForward(['/dashboard']);
             }
           }
           if (data.status == false) {
-            this.dataService.presentToast('Wrong OTP', 'danger');
+            this.dataService.presentToast('Wrong OTP', 'primary');
           }
         },
         (err) => {
@@ -131,13 +132,13 @@ export class LoginPage implements OnInit {
     this.dataService.auth.otp = undefined;
   }
   google() {
-    this.dataService.presentToast('Coming Soon..', 'danger');
+    this.dataService.presentToast('Coming Soon..', 'primary');
   }
-  
-   ionViewDidEnter(){
-setTimeout(async() => {
-  
-  await SplashScreen.hide()
-}, 100);
+
+  ionViewDidEnter() {
+    setTimeout(async () => {
+
+      await SplashScreen.hide()
+    }, 100);
   }
 }

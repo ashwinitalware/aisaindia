@@ -9,12 +9,7 @@
 
 <ion-content>
   <div class="p-3">
-    <ion-segment
-      class="bg-color"
-      [(ngModel)]="segment"
-      mode="ios"
-      (ionChange)="segmentChanged($event)"
-    >
+    <ion-segment class="bg-color" [(ngModel)]="segment" mode="ios" (ionChange)="segmentChanged($event)">
       <ion-segment-button value="pending">
         <ion-label>Pending</ion-label>
       </ion-segment-button>
@@ -30,16 +25,9 @@
     </ion-segment>
     <br />
     <!-- routerLink="/software-deatils" -->
-    <div
-      (click)="jobDetails(application)"
-      class="div1 p-3 mb-2 shadow-lg border-b-2 border-black"
-      *ngFor="let application of data"
-    >
-      <ion-label class=""
-        ><b
-          >{{application.attributes.jobPost.data.attributes.title|titlecase}}</b
-        ></ion-label
-      >
+    <div (click)="jobDetails(application)" class="div1 p-3 mb-2 shadow-lg border-b-2 border-black"
+      *ngFor="let application of data">
+      <ion-label class=""><b>{{application.attributes.jobPost.data.attributes.title|titlecase}}</b></ion-label>
       <p class="">
         {{application.attributes.jobPost.data.attributes.companyName|titlecase}}
       </p>
@@ -51,9 +39,7 @@
       <div class="flex items-center mt-2">
         <ion-icon name="checkmark-circle" class="text-green-500"></ion-icon>
         &nbsp;
-        <span
-          class="{{statusToClass(application.attributes.status)}} rounded-md p-1 text-sm "
-        >
+        <span class="{{statusToClass(application.attributes.status)}} rounded-md p-1 text-sm ">
           <!-- <ion-icon style="font-size: 1em" name="checkmark-circle"></ion-icon
           >&nbsp; -->
           {{application.attributes.status|uppercase}}

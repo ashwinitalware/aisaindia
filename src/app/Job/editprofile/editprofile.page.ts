@@ -35,8 +35,8 @@ export class EditprofilePage implements OnInit {
     this.http
       .get(
         'https://maps.googleapis.com/maps/api/geocode/json?address=' +
-          this.dataService.profile.pinCode +
-          '&sensor=true&key=AIzaSyD6d0aNvUiSWaENoQ1UuqCOzfMg0Wmq7Do'
+        this.dataService.profile.pinCode +
+        '&sensor=true&key=AIzaSyD6d0aNvUiSWaENoQ1UuqCOzfMg0Wmq7Do'
       )
       .subscribe((data: any) => {
         if (data.results && data.results.length) {
@@ -44,14 +44,14 @@ export class EditprofilePage implements OnInit {
           try {
             this.dataService.profile.city =
               data.results[0].address_components[1].long_name;
-          } catch (error) {}
+          } catch (error) { }
         } else {
           this.dataService.presentToast('Invalid Pin Code', 'danger');
           // alert('Invalid Pin Code');
         }
       });
   }
-  ngOnInit() {}
+  ngOnInit() { }
   async updateProfile() {
     // check for validations
     let tempProfile = this.dataService.profile;
@@ -73,8 +73,8 @@ export class EditprofilePage implements OnInit {
     const pinResult: any = await this.http
       .get(
         'https://maps.googleapis.com/maps/api/geocode/json?address=' +
-          this.dataService.profile.pinCode +
-          '&sensor=true&key=AIzaSyD6d0aNvUiSWaENoQ1UuqCOzfMg0Wmq7Do'
+        this.dataService.profile.pinCode +
+        '&sensor=true&key=AIzaSyD6d0aNvUiSWaENoQ1UuqCOzfMg0Wmq7Do'
       )
       .toPromise();
 
@@ -105,7 +105,7 @@ export class EditprofilePage implements OnInit {
         if (this.activateRoute.snapshot.queryParams.navigate == 'back') {
           this.navCtrl.back();
         } else {
-          this.navCtrl.navigateRoot(['/dashboard']);
+          this.navCtrl.navigateRoot(['/jobdashboard']);
         }
       });
   }

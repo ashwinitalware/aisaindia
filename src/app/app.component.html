@@ -14,7 +14,8 @@
               <ion-icon class="text-3xl" name="person"></ion-icon>
             </div>
             <div class="w-16 h-16 rounded-full" *ngIf="this.dataService.profile.profileImage">
-              <img (click)="fileUpload2.click()" src="{{ this.dataService.profile.profileImage }}" alt="" />
+              <img class="img-icon" (click)="fileUpload2.click()" src="{{ this.dataService.profile.profileImage }}"
+                alt="" />
             </div>
             <div class="pl-4 flex-1">
               <div class="text-xl font-bold text-gray-800 truncate text-ellipsis	">
@@ -44,6 +45,10 @@
         </div>
       </div>
     </ion-content>
+    <div class="bg-white p-2" align="center">
+      <img width="30%" height="30%" src="assets/logo_black.png" alt="">
+    </div>
+
   </ion-menu>
   <ion-router-outlet id="main"> </ion-router-outlet>
 </ion-app>

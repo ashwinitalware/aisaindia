@@ -15,7 +15,6 @@ export class FiltersPage implements OnInit {
     voices.forEach((voice) => {
       if (voice.name === "Microsoft Heera - English (India)") {
         toSpeak.voice = voice;
-
       }
     });
     synth.speak(toSpeak);
